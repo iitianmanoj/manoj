@@ -1,99 +1,1246 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="scroll-smooth" lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Manoj Kumar — Software Developer, Java and Web Development enthusiast." />
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta content="web_standard" name="shell-type"/>
+  <meta name="description" content="Portfolio of Manoj Kumar - Computer Science Scholar & Software Developer. Full-stack web platforms, native Android apps, and algorithmic problem solving."/>
   <title>Manoj Kumar | Software Developer</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <style>
+    @layer base {
+      html, body {
+        margin: 0;
+        padding: 0;
+        scroll-behavior: smooth;
+      }
+      body {
+        overscroll-behavior: none;
+      }
+    }
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #faf8ff;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #c3c0ff;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #4338ca;
+    }
+
+    /* Ambient Motion Keyframes */
+    @keyframes float-orb-1 {
+      0%, 100% { transform: translate(0px, 0px) scale(1); }
+      33% { transform: translate(60px, -45px) scale(1.1); }
+      66% { transform: translate(-30px, 35px) scale(0.95); }
+    }
+    @keyframes float-orb-2 {
+      0%, 100% { transform: translate(0px, 0px) scale(1); }
+      40% { transform: translate(-50px, 40px) scale(1.15); }
+      75% { transform: translate(45px, -30px) scale(0.9); }
+    }
+    @keyframes float-orb-3 {
+      0%, 100% { transform: translate(0px, 0px) scale(1); }
+      50% { transform: translate(35px, -60px) scale(1.08); }
+    }
+    @keyframes float-badge {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-8px) rotate(1deg); }
+    }
+    @keyframes pulse-glow {
+      0%, 100% { opacity: 0.55; transform: scale(1); }
+      50% { opacity: 0.9; transform: scale(1.05); }
+    }
+    @keyframes shimmer-sweep {
+      0% { transform: translateX(-150%) skewX(-20deg); }
+      100% { transform: translateX(200%) skewX(-20deg); }
+    }
+    @keyframes blink-cursor {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+    @keyframes wave-shine {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+
+    .animate-orb-1 { animation: float-orb-1 22s ease-in-out infinite; }
+    .animate-orb-2 { animation: float-orb-2 26s ease-in-out infinite; }
+    .animate-orb-3 { animation: float-orb-3 19s ease-in-out infinite; }
+    .animate-float-slow { animation: float-badge 6s ease-in-out infinite; }
+    .animate-float-delayed { animation: float-badge 7s ease-in-out 1.8s infinite; }
+    .animate-pulse-glow { animation: pulse-glow 4s ease-in-out infinite; }
+    .cursor-blink { animation: blink-cursor 0.9s infinite; }
+
+    /* Shimmer Effect on Buttons */
+    .btn-shimmer {
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-shimmer::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+      transform: translateX(-180%) skewX(-25deg);
+      transition: none;
+    }
+    .btn-shimmer:hover::after {
+      animation: shimmer-sweep 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Interactive Motion Tilt Card */
+    .motion-card {
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.3s ease;
+      position: relative;
+      background-clip: padding-box;
+    }
+    .motion-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 16px 36px -10px rgba(67, 56, 202, 0.12), 0 0 1px 1px rgba(79, 70, 229, 0.15);
+    }
+
+    /* Pill Hover Micro-motion */
+    .tech-pill {
+      transition: all 0.22s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .tech-pill:hover {
+      transform: translateY(-2px) scale(1.04);
+      background-color: #eaedff;
+      color: #2a14b4;
+      box-shadow: 0 4px 10px rgba(67, 56, 202, 0.12);
+    }
+
+    /* Scroll Reveal Initial and Revealed States */
+    .reveal-elem {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+    .reveal-elem.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Reduced Motion preference */
+    @media (prefers-reduced-motion: reduce) {
+      .animate-orb-1, .animate-orb-2, .animate-orb-3,
+      .animate-float-slow, .animate-float-delayed, .animate-pulse-glow {
+        animation: none !important;
+      }
+      .reveal-elem {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
+      .motion-card:hover {
+        transform: none !important;
+      }
+    }
+  </style>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "on-primary": "#ffffff",
+            "primary-fixed-dim": "#c3c0ff",
+            "on-secondary-fixed": "#0b1c30",
+            "inverse-surface": "#283044",
+            "outline": "#777586",
+            "error": "#ba1a1a",
+            "surface-container-highest": "#dae2fd",
+            "tertiary": "#4b00a7",
+            "primary": "#2a14b4",
+            "on-tertiary-fixed-variant": "#5a00c6",
+            "on-surface-variant": "#464554",
+            "secondary-fixed": "#d3e4fe",
+            "inverse-primary": "#c3c0ff",
+            "on-error": "#ffffff",
+            "secondary-container": "#d0e1fb",
+            "on-tertiary-container": "#d1b9ff",
+            "surface-container-low": "#f2f3ff",
+            "tertiary-container": "#6616d7",
+            "error-container": "#ffdad6",
+            "surface": "#faf8ff",
+            "on-background": "#131b2e",
+            "surface-container-lowest": "#ffffff",
+            "secondary-fixed-dim": "#b7c8e1",
+            "tertiary-fixed-dim": "#d2bbff",
+            "surface-variant": "#dae2fd",
+            "surface-bright": "#faf8ff",
+            "surface-dim": "#d2d9f4",
+            "on-primary-fixed": "#100069",
+            "on-tertiary-fixed": "#25005a",
+            "primary-container": "#4338ca",
+            "secondary": "#505f76",
+            "on-error-container": "#93000a",
+            "surface-tint": "#5148d7",
+            "on-surface": "#131b2e",
+            "on-tertiary": "#ffffff",
+            "surface-container-high": "#e2e7ff",
+            "primary-fixed": "#e3dfff",
+            "inverse-on-surface": "#eef0ff",
+            "on-primary-container": "#c1beff",
+            "on-secondary-container": "#54647a",
+            "tertiary-fixed": "#eaddff",
+            "on-secondary-fixed-variant": "#38485d",
+            "background": "#faf8ff",
+            "outline-variant": "#c7c4d7",
+            "surface-container": "#eaedff",
+            "on-primary-fixed-variant": "#372abf",
+            "on-secondary": "#ffffff"
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "2xl": "1rem",
+            "3xl": "1.5rem",
+            "full": "9999px"
+          },
+          spacing: {
+            "space-xl": "2.5rem",
+            "gutter-mobile": "1rem",
+            "space-sm": "0.5rem",
+            "gutter": "1.5rem",
+            "space-md": "1rem",
+            "margin": "2rem",
+            "margin-mobile": "1.25rem",
+            "space-xs": "0.25rem",
+            "space-lg": "1.5rem"
+          },
+          fontFamily: {
+            "body-sm": ["Inter", "sans-serif"],
+            "headline-lg-mobile": ["Plus Jakarta Sans", "sans-serif"],
+            "headline-md": ["Plus Jakarta Sans", "sans-serif"],
+            "headline-lg": ["Plus Jakarta Sans", "sans-serif"],
+            "headline-sm": ["Plus Jakarta Sans", "sans-serif"],
+            "display-xl": ["Plus Jakarta Sans", "sans-serif"],
+            "label-sm": ["JetBrains Mono", "monospace"],
+            "display-xl-mobile": ["Plus Jakarta Sans", "sans-serif"],
+            "label-md": ["JetBrains Mono", "monospace"],
+            "body-lg": ["Inter", "sans-serif"],
+            "body-md": ["Inter", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script>
 </head>
-<body>
-  <header class="navbar">
-    <a class="logo" href="#home">MK<span>.</span></a>
-    <nav id="navLinks" class="nav-links">
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
-    </nav>
-    <div class="nav-actions">
-      <button id="themeToggle" class="icon-btn" aria-label="Toggle theme">☾</button>
-      <button id="menuToggle" class="menu-btn" aria-label="Toggle navigation">☰</button>
+<body class="bg-surface font-body-md text-body-md text-on-surface antialiased selection:bg-primary-fixed selection:text-on-primary-fixed relative overflow-x-hidden">
+  <!-- Ambient Dynamic Floating Motion Canvas Orbs (Light background with luminous indigo/cyan/violet) -->
+  <div aria-hidden="true" class="fixed inset-0 pointer-events-none -z-10 overflow-hidden">
+    <div class="absolute -top-32 -right-24 w-[620px] h-[620px] rounded-full bg-gradient-to-br from-indigo-200/45 via-purple-100/35 to-transparent blur-[120px] animate-orb-1"></div>
+    <div class="absolute top-[38%] -left-36 w-[560px] h-[560px] rounded-full bg-gradient-to-tr from-sky-200/40 via-indigo-100/30 to-transparent blur-[110px] animate-orb-2"></div>
+    <div class="absolute top-[75%] right-[5%] w-[580px] h-[580px] rounded-full bg-gradient-to-tl from-purple-200/35 via-blue-100/30 to-transparent blur-[130px] animate-orb-3"></div>
+    <!-- Soft Dot Grid Texture Overlay -->
+    <div class="absolute inset-0 opacity-[0.035]" style="background-image: radial-gradient(#2a14b4 1px, transparent 1px); background-size: 28px 28px;"></div>
+  </div>
+
+  <!-- FLOATING NAVIGATION BAR (Glassmorphism with motion scroll state) -->
+  <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-surface/80 backdrop-blur-md border-b border-outline-variant/30" id="main-header">
+    <div class="h-20 max-w-[1240px] mx-auto px-margin-mobile lg:px-margin flex items-center justify-between gap-space-md">
+      <!-- Brand Logo MK -->
+      <div class="flex items-center gap-space-md">
+        <a class="flex items-center gap-3 group" data-path="portfolio-home" href="#">
+          <div class="relative w-10 h-10 rounded-xl bg-gradient-to-br from-primary via-primary-container to-tertiary text-on-primary flex items-center justify-center font-headline-sm text-headline-sm transition-all duration-300 group-hover:scale-105 group-hover:shadow-[0_4px_16px_rgba(67,56,202,0.35)] shadow-sm">
+            <span>MK</span>
+            <span class="absolute -inset-0.5 rounded-xl bg-gradient-to-r from-primary to-tertiary-container opacity-0 group-hover:opacity-40 blur-sm transition-opacity"></span>
+          </div>
+          <div class="flex flex-col">
+            <span class="font-headline-sm text-headline-sm text-on-surface leading-tight tracking-tight group-hover:text-primary transition-colors">Manoj Kumar</span>
+            <span class="font-label-sm text-[12px] text-on-surface-variant flex items-center gap-1.5">
+              Software Developer
+              <span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+            </span>
+          </div>
+        </a>
+        <!-- Live Hiring Status Pill -->
+        <div class="hidden xl:flex items-center gap-2 pl-3">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container/90 border border-outline-variant/40 text-on-surface font-label-sm text-[11px] backdrop-blur-sm transition-transform hover:scale-105">
+            <span class="relative flex h-2 w-2">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            </span>
+            <span>Available for SDE Roles</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation Links with Active State Indicator -->
+      <nav class="hidden lg:flex items-center p-1.5 rounded-full bg-surface-container-low/80 border border-outline-variant/35 backdrop-blur-sm shadow-sm gap-1" id="nav-container">
+        <a class="nav-item px-3.5 py-1.5 rounded-full text-on-surface text-body-sm font-medium transition-all duration-200 hover:text-primary hover:bg-surface-container" href="#about">About</a>
+        <a class="nav-item px-3.5 py-1.5 rounded-full text-on-surface text-body-sm font-medium transition-all duration-200 hover:text-primary hover:bg-surface-container" href="#skills">Skills</a>
+        <a class="nav-item px-3.5 py-1.5 rounded-full text-on-surface text-body-sm font-medium transition-all duration-200 hover:text-primary hover:bg-surface-container" href="#projects">Projects</a>
+        <a class="nav-item px-3.5 py-1.5 rounded-full text-on-surface text-body-sm font-medium transition-all duration-200 hover:text-primary hover:bg-surface-container" href="#problem-solving">Problem Solving</a>
+        <a class="nav-item px-3.5 py-1.5 rounded-full text-on-surface text-body-sm font-medium transition-all duration-200 hover:text-primary hover:bg-surface-container" href="#education">Education</a>
+        <a class="nav-item px-3.5 py-1.5 rounded-full text-on-surface text-body-sm font-medium transition-all duration-200 hover:text-primary hover:bg-surface-container" href="#contact">Contact</a>
+      </nav>
+
+      <!-- Quick Action CTAs -->
+      <div class="flex items-center gap-3">
+        <a class="hidden sm:inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-body-sm text-[13px] font-medium transition-all duration-200 shadow-sm border border-outline-variant/40 hover:-translate-y-0.5" href="https://drive.google.com" rel="noopener noreferrer" target="_blank">
+          <span class="material-symbols-outlined text-[16px] text-primary">download</span>
+          <span>Resume</span>
+        </a>
+        <a class="btn-shimmer inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-lg bg-gradient-to-r from-primary to-primary-container text-on-primary font-body-sm text-[13px] font-semibold transition-all duration-200 shadow-sm hover:shadow-[0_4px_14px_rgba(67,56,202,0.35)] hover:-translate-y-0.5 active:translate-y-0" href="#contact">
+          <span class="material-symbols-outlined text-[16px]">send</span>
+          <span>Get in Touch</span>
+        </a>
+      </div>
     </div>
   </header>
 
-  <main>
-    <section id="home" class="hero section">
-      <div class="hero-content reveal">
-        <p class="eyebrow">AVAILABLE FOR INTERNSHIPS & COLLABORATIONS</p>
-        <h1>Building useful<br><span>digital experiences.</span></h1>
-        <p class="hero-text">Hi, I'm <strong>Manoj Kumar</strong> — a B.Tech CSE student and software developer focused on Java, backend systems, web development, and practical problem solving.</p>
-        <div class="hero-buttons">
-          <a class="btn primary" href="#projects">Explore my work ↗</a>
-          <a class="btn secondary" href="https://github.com/iitianmanoj" target="_blank" rel="noopener">GitHub ↗</a>
+  <!-- MAIN VIEWPORT -->
+  <main class="w-full pt-20 bg-transparent min-h-[calc(100vh-160px)]">
+    <div class="flex flex-col w-full">
+      <!-- ================= HERO SECTION ================= -->
+      <section class="max-w-[1240px] mx-auto px-margin-mobile lg:px-margin pt-14 pb-20 lg:pt-20 lg:pb-28 w-full">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <!-- Hero Left Column: Intro & Headline -->
+          <div class="lg:col-span-7 flex flex-col items-start gap-7 reveal-elem">
+            <!-- Live Pill / Indicator -->
+            <div class="flex flex-wrap items-center gap-2.5">
+              <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-surface-container border border-indigo-100 text-on-surface font-label-md text-[13px] shadow-sm">
+                <span class="relative flex h-2 w-2">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                </span>
+                <span class="font-medium">Available for SDE Internships &amp; New Grad Roles</span>
+              </div>
+              <div class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container-low border border-outline-variant/30 text-secondary font-label-sm text-[11px]">
+                <span class="material-symbols-outlined text-[15px] text-primary">terminal</span>
+                <span>Full-Stack &amp; Problem Solving</span>
+              </div>
+            </div>
+
+            <!-- Main Heading with Motion Gradient Text -->
+            <div class="flex flex-col gap-4">
+              <h1 class="font-display-xl text-3xl sm:text-5xl lg:text-[54px] lg:leading-[1.12] tracking-tight text-on-surface font-extrabold">
+                Building dependable digital products that solve 
+                <span class="relative inline-block text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary-container to-tertiary">
+                  real problems
+                  <span class="absolute bottom-1 left-0 w-full h-[3px] bg-gradient-to-r from-primary to-tertiary-container rounded-full opacity-60"></span>
+                </span>.
+              </h1>
+              <p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed max-w-2xl">
+                Hi, I'm <span class="font-bold text-on-surface">Manoj Kumar</span> — a Computer Science scholar at Galgotias College (2024–2028). I engineer production-ready full-stack web platforms, scalable backend services, native Android apps, and practical AI integrations with an algorithmic foundation.
+              </p>
+            </div>
+
+            <!-- Action CTA Buttons with Shimmer & Ripple Motion -->
+            <div class="flex flex-wrap items-center gap-4 pt-1">
+              <a class="btn-shimmer inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-gradient-to-r from-primary to-primary-container text-on-primary font-headline-sm text-[15px] font-semibold shadow-md hover:shadow-[0_8px_25px_rgba(67,56,202,0.3)] transition-all duration-300 hover:-translate-y-0.5 group" href="#projects">
+                <span>View Selected Projects</span>
+                <span class="material-symbols-outlined text-[19px] transition-transform duration-300 group-hover:translate-y-1">arrow_downward</span>
+              </a>
+              <a class="btn-shimmer inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-surface-container-lowest text-on-surface font-headline-sm text-[15px] font-semibold border border-outline-variant/50 shadow-sm hover:bg-surface-container hover:border-primary/40 transition-all duration-300 hover:-translate-y-0.5" href="https://drive.google.com" rel="noopener noreferrer" target="_blank">
+                <span class="material-symbols-outlined text-[19px] text-primary">description</span>
+                <span>Download Resume</span>
+              </a>
+              <a class="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-surface-container-low text-on-surface-variant font-headline-sm text-[15px] hover:text-primary hover:bg-surface-container transition-all duration-200" href="#contact">
+                <span class="material-symbols-outlined text-[19px]">chat_bubble_outline</span>
+                <span>Let's Connect</span>
+              </a>
+            </div>
+
+            <!-- Dynamic Live Quick Badges -->
+            <div class="flex flex-wrap items-center gap-2 pt-2 text-on-surface-variant text-label-sm text-[12px]">
+              <span class="flex items-center gap-1 font-medium text-on-surface">
+                <span class="material-symbols-outlined text-[15px] text-emerald-600">verified</span> Verified Competencies:
+              </span>
+              <span class="px-2.5 py-1 rounded-md bg-surface-container-low border border-outline-variant/30 text-on-surface-variant">DSA in Java</span>
+              <span class="px-2.5 py-1 rounded-md bg-surface-container-low border border-outline-variant/30 text-on-surface-variant">Full-Stack MERN</span>
+              <span class="px-2.5 py-1 rounded-md bg-surface-container-low border border-outline-variant/30 text-on-surface-variant">Offline ML / Android</span>
+            </div>
+          </div>
+
+          <!-- Hero Right Column: Animated Interactive Code Terminal & Tech Badge Orbs -->
+          <div class="lg:col-span-5 relative flex justify-center reveal-elem">
+            <!-- Floating Decorative Glassmorphic Badges -->
+            <div class="absolute -top-4 -left-6 z-20 hidden sm:flex items-center gap-2 px-3.5 py-2 rounded-xl bg-surface-container-lowest/90 backdrop-blur-md border border-indigo-100 shadow-[0_8px_20px_rgba(67,56,202,0.12)] animate-float-slow">
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+              <span class="font-label-sm text-[12px] font-semibold text-on-surface">172+ DSA Solved</span>
+            </div>
+            <div class="absolute -bottom-6 -right-4 z-20 hidden sm:flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-surface-container-lowest/90 backdrop-blur-md border border-indigo-100 shadow-[0_8px_20px_rgba(67,56,202,0.12)] animate-float-delayed">
+              <div class="w-6 h-6 rounded-lg bg-primary-container text-on-primary flex items-center justify-center">
+                <span class="material-symbols-outlined text-[15px]">military_tech</span>
+              </div>
+              <div class="flex flex-col">
+                <span class="font-label-sm text-[11px] font-bold text-on-surface">Appinventiv Scholar</span>
+                <span class="text-[10px] text-emerald-600 font-semibold">₹50,000 Awardee</span>
+              </div>
+            </div>
+
+            <!-- Terminal Mockup Window -->
+            <div class="w-full max-w-[460px] rounded-2xl bg-surface-container-lowest border border-outline-variant/50 shadow-[0_20px_50px_-12px_rgba(67,56,202,0.15)] overflow-hidden motion-card">
+              <!-- Window Chrome Bar -->
+              <div class="px-4 py-3 bg-surface-container flex items-center justify-between border-b border-outline-variant/30">
+                <div class="flex items-center gap-2">
+                  <span class="w-3 h-3 rounded-full bg-rose-400 inline-block"></span>
+                  <span class="w-3 h-3 rounded-full bg-amber-400 inline-block"></span>
+                  <span class="w-3 h-3 rounded-full bg-emerald-400 inline-block"></span>
+                </div>
+                <div class="flex items-center gap-1.5 font-label-sm text-[11px] text-on-surface-variant font-medium">
+                  <span class="material-symbols-outlined text-[14px] text-primary">terminal</span>
+                  <span>manoj@engineer:~</span>
+                </div>
+                <div class="w-8"></div>
+              </div>
+              <!-- Terminal Code Stream Content -->
+              <div class="p-5 font-label-sm text-[13px] leading-relaxed text-on-surface-variant bg-surface-container-lowest/95 flex flex-col gap-3 font-mono select-none">
+                <div class="flex items-center gap-2 text-primary font-semibold">
+                  <span>➜</span>
+                  <span class="text-on-surface">whoami</span>
+                </div>
+                <div class="pl-4 text-on-surface-variant text-[12px]">
+                  "Manoj Kumar • B.Tech CSE @ Galgotias College"
+                </div>
+                <div class="flex items-center gap-2 text-primary font-semibold pt-1">
+                  <span>➜</span>
+                  <span class="text-on-surface">cat competencies.json</span>
+                </div>
+                <div class="pl-4 text-[12px] bg-surface-container-low/70 p-3 rounded-lg border border-outline-variant/30 space-y-1">
+                  <div><span class="text-indigo-600 font-semibold">"stack":</span> ["React", "Node", "MySQL", "Java"],</div>
+                  <div><span class="text-indigo-600 font-semibold">"focus":</span> "Resilient Backends &amp; Applied AI",</div>
+                  <div><span class="text-indigo-600 font-semibold">"dsaRank":</span> "Top 10% Beats (LeetCode)",</div>
+                  <div><span class="text-indigo-600 font-semibold">"status":</span> <span class="text-emerald-600 font-bold">"Open to Internship Opportunities"</span></div>
+                </div>
+                <div class="flex items-center gap-2 text-primary font-semibold pt-1">
+                  <span>➜</span>
+                  <span class="text-on-surface">build --verify-impact</span>
+                  <span class="cursor-blink inline-block w-2 h-4 bg-primary align-middle ml-1"></span>
+                </div>
+              </div>
+              <!-- Interactive Terminal Bottom Actions Bar -->
+              <div class="px-5 py-2.5 bg-surface-container-low/50 border-t border-outline-variant/30 flex items-center justify-between font-label-sm text-[11px] text-on-surface-variant">
+                <div class="flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                  <span>Shell: zsh (online)</span>
+                </div>
+                <span class="text-primary font-medium hover:underline cursor-pointer">@iitianmanoj</span>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="social-row">
-          <a href="https://github.com/iitianmanoj" target="_blank" rel="noopener">GitHub</a>
-          <span>•</span>
-          <a href="https://www.linkedin.com/in/iitianmanoj/" target="_blank" rel="noopener">LinkedIn</a>
-          <span>•</span>
-          <a href="mailto:iitianmanoj@gmail.com">Email</a>
+
+        <!-- Dynamic Counter & Highlight Metric Cards -->
+        <div class="w-full grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 pt-16">
+          <!-- Stat 1 -->
+          <div class="p-6 rounded-2xl bg-surface-container-lowest/90 border border-outline-variant/40 shadow-sm motion-card flex flex-col gap-2 reveal-elem">
+            <div class="flex items-center justify-between text-primary">
+              <span class="material-symbols-outlined text-[24px]">code_blocks</span>
+              <span class="font-label-sm text-[11px] text-on-surface-variant uppercase tracking-wider font-semibold">Algorithmic</span>
+            </div>
+            <div class="flex items-baseline gap-1">
+              <span class="counter font-display-xl text-3xl sm:text-4xl text-on-surface font-extrabold" data-target="172">0</span>
+              <span class="text-2xl font-bold text-primary">+</span>
+            </div>
+            <p class="font-body-sm text-[13px] text-on-surface-variant">LeetCode solved (Top 10% beats)</p>
+          </div>
+          <!-- Stat 2 -->
+          <div class="p-6 rounded-2xl bg-surface-container-lowest/90 border border-outline-variant/40 shadow-sm motion-card flex flex-col gap-2 reveal-elem">
+            <div class="flex items-center justify-between text-primary">
+              <span class="material-symbols-outlined text-[24px]">school</span>
+              <span class="font-label-sm text-[11px] text-on-surface-variant uppercase tracking-wider font-semibold">Academic</span>
+            </div>
+            <div class="flex items-baseline gap-1">
+              <span class="font-display-xl text-3xl sm:text-4xl text-on-surface font-extrabold">8.16</span>
+              <span class="text-sm font-semibold text-emerald-600 ml-1">SGPA</span>
+            </div>
+            <p class="font-body-sm text-[13px] text-on-surface-variant">B.Tech CSE (Galgotias College)</p>
+          </div>
+          <!-- Stat 3 -->
+          <div class="p-6 rounded-2xl bg-surface-container-lowest/90 border border-outline-variant/40 shadow-sm motion-card flex flex-col gap-2 reveal-elem">
+            <div class="flex items-center justify-between text-primary">
+              <span class="material-symbols-outlined text-[24px]">deployed_code</span>
+              <span class="font-label-sm text-[11px] text-on-surface-variant uppercase tracking-wider font-semibold">Shipped</span>
+            </div>
+            <div class="flex items-baseline gap-1">
+              <span class="counter font-display-xl text-3xl sm:text-4xl text-on-surface font-extrabold" data-target="10">0</span>
+              <span class="text-2xl font-bold text-primary">+</span>
+            </div>
+            <p class="font-body-sm text-[13px] text-on-surface-variant">Full-stack, AI &amp; Android builds</p>
+          </div>
+          <!-- Stat 4 -->
+          <div class="p-6 rounded-2xl bg-surface-container-lowest/90 border border-outline-variant/40 shadow-sm motion-card flex flex-col gap-2 reveal-elem">
+            <div class="flex items-center justify-between text-primary">
+              <span class="material-symbols-outlined text-[24px]">military_tech</span>
+              <span class="font-label-sm text-[11px] text-on-surface-variant uppercase tracking-wider font-semibold">Merit</span>
+            </div>
+            <div class="flex items-baseline gap-1">
+              <span class="font-display-xl text-3xl sm:text-4xl text-on-surface font-extrabold">₹50K</span>
+              <span class="text-sm font-semibold text-primary ml-1">Grant</span>
+            </div>
+            <p class="font-body-sm text-[13px] text-on-surface-variant">Appinventiv EduBoost Scholar</p>
+          </div>
         </div>
-      </div>
-      <div class="hero-card reveal">
-        <div class="orbit orbit-one"></div>
-        <div class="orbit orbit-two"></div>
-        <div class="profile-mark">MK</div>
-        <div class="floating-card card-top">⌘ Clean code</div>
-        <div class="floating-card card-bottom">{ build. learn. repeat. }</div>
-      </div>
-    </section>
+      </section>
 
-    <section id="about" class="section split-section">
-      <div class="section-heading reveal"><p class="eyebrow">01 / ABOUT ME</p><h2>Curious mind.<br>Builder's mindset.</h2></div>
-      <div class="section-copy reveal">
-        <p>I'm pursuing B.Tech in Computer Science and Engineering at Galgotias College of Engineering & Technology, with a focus on developing real-world applications and improving my problem-solving skills.</p>
-        <p>I enjoy working across frontend, backend, databases, Android development, and AI-powered tools. I learn by building, testing, and shipping projects.</p>
-        <div class="stats">
-          <div><strong>8.16</strong><span>CGPA</span></div>
-          <div><strong>172+</strong><span>LeetCode solved</span></div>
-          <div><strong>2028</strong><span>Graduation</span></div>
+      <!-- ================= SECTION: ABOUT & CAPABILITIES ================= -->
+      <section class="w-full bg-surface-container-low/70 py-20 lg:py-24 border-y border-outline-variant/30" id="about">
+        <div class="max-w-[1240px] mx-auto px-margin-mobile lg:px-margin flex flex-col gap-12">
+          <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 reveal-elem">
+            <div class="flex flex-col gap-2 max-w-2xl">
+              <div class="inline-flex items-center gap-2 text-primary font-semibold font-label-sm text-label-sm uppercase tracking-widest">
+                <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                <span>About • Technical Mindset</span>
+              </div>
+              <h2 class="font-headline-lg text-3xl sm:text-4xl text-on-surface font-bold">
+                Architectural discipline paired with rapid prototyping.
+              </h2>
+            </div>
+            <p class="font-body-md text-body-md text-on-surface-variant max-w-md">
+              I prioritize clean schema designs, deterministic business logic, and resilient client experiences over hype. Every project is an opportunity to reduce cognitive friction and latency.
+            </p>
+          </div>
+
+          <!-- 3 Interactive Motion Capability Cards -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Card 1 -->
+            <div class="p-8 rounded-2xl bg-surface-container-lowest border border-outline-variant/40 shadow-sm motion-card flex flex-col gap-6 reveal-elem">
+              <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-surface-container to-surface-container-high border border-outline-variant/30 flex items-center justify-center text-primary shadow-sm">
+                <span class="material-symbols-outlined text-[28px]">database</span>
+              </div>
+              <div class="flex flex-col gap-2">
+                <h3 class="font-headline-sm text-xl text-on-surface font-semibold">Full-Stack Web &amp; APIs</h3>
+                <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+                  Design and deployment of end-to-end web software. Specializing in component-driven UI, state synchronizations, authenticated RESTful routes, and transactional SQL data modeling.
+                </p>
+              </div>
+              <div class="pt-2 flex flex-wrap gap-2 mt-auto">
+                <span class="tech-pill px-3 py-1 rounded-lg bg-surface-container text-on-surface-variant font-label-sm text-[12px]">React</span>
+                <span class="tech-pill px-3 py-1 rounded-lg bg-surface-container text-on-surface-variant font-label-sm text-[12px]">Node.js</span>
+                <span class="tech-pill px-3 py-1 rounded-lg bg-surface-container text-on-surface-variant font-label-sm text-[12px]">Express</span>
+                <span class="tech-pill px-3 py-1 rounded-lg bg-surface-container text-on-surface-variant font-label-sm text-[12px]">MySQL</span>
+                <span class="tech-pill px-3 py-1 rounded-lg bg-surface-container text-on-surface-variant font-label-sm text-[12px]">PostgreSQL</span>
+                <span class="tech-pill px-3 py-1 rounded-lg bg-surface-container text-on-surface-variant font-label-sm text-[12px]">JWT RBAC</span>
+              </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="p-8 rounded-2xl bg-surface-container-lowest border border-outline-variant/40 shadow-sm motion-card flex flex-col gap-6 reveal-elem">
+              <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-surface-container to-surface-container-high border border-outline-variant/30 flex items-center justify-center text-primary shadow-sm">
+                <span class="material-symbols-outlined text-[28px]">smartphone</span>
+              </div>
+              <div class="flex flex-col gap-2">
+                <h3 class="font-headline-sm text-xl text-on-surface font-semibold">Native Android &amp; On-Device ML</h3>
+                <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+                  Building performant native client experiences using modern Android architecture, CameraX streams, and embedded Google ML Kit models that execute inference entirely offline.
+                </p>
+              </div>
+              <div class="pt-2 flex flex-wrap gap-2 mt-auto">
+                <span class="tech-pill px-3 py-1 rounded-lg bg-surface-container text-on-surface-variant font-label-sm text-[12px]">Java</span>
+                <span class="tech-pill px-3 py-1 rounded-lg bg-surface-container text-on-surface-variant font-label-sm text-[12px]">Android SDK</span>
+                <span class="tech-pill px-3 py-1 rounded-lg bg-surface-container text-on-surface-variant font-label-sm text-[12px]">CameraX</span>
+                <span class="tech-pill px-3 py-1 rounded-lg bg-surface-container text-on-surface-variant font-label-sm text-[12px]">ML Kit OCR</span>
+                <span class="tech-pill px-3 py-1 rounded-lg bg-surface-container text-on-surface-variant font-label-sm text-[12px]">Text-to-Speech</span>
+                <span class="tech-pill px-3 py-1 rounded-lg bg-surface-container text-on-surface-variant font-label-sm text-[12px]">Firebase</span>
+              </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="p-8 rounded-2xl bg-surface-container-lowest border border-outline-variant/40 shadow-sm motion-card flex flex-col gap-6 reveal-elem">
+              <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-surface-container to-surface-container-high border border-outline-variant/30 flex items-center justify-center text-primary shadow-sm">
+                <span class="material-symbols-outlined text-[28px]">psychology</span>
+              </div>
+              <div class="flex flex-col gap-2">
+                <h3 class="font-headline-sm text-xl text-on-surface font-semibold">AI &amp; Cloud Integrations</h3>
+                <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+                  Bridging LLM inference engines with real user tasks: semantic resume processing, programmatic prompt chains, containerized deployments, and third-party payment infrastructure.
+                </p>
+              </div>
+              <div class="pt-2 flex flex-wrap gap-2 mt-auto">
+                <span class="tech-pill px-3 py-1 rounded-lg bg-surface-container text-on-surface-variant font-label-sm text-[12px]">DeepSeek</span>
+                <span class="tech-pill px-3 py-1 rounded-lg bg-surface-container text-on-surface-variant font-label-sm text-[12px]">OpenRouter</span>
+                <span class="tech-pill px-3 py-1 rounded-lg bg-surface-container text-on-surface-variant font-label-sm text-[12px]">Groq</span>
+                <span class="tech-pill px-3 py-1 rounded-lg bg-surface-container text-on-surface-variant font-label-sm text-[12px]">Docker</span>
+                <span class="tech-pill px-3 py-1 rounded-lg bg-surface-container text-on-surface-variant font-label-sm text-[12px]">Razorpay</span>
+                <span class="tech-pill px-3 py-1 rounded-lg bg-surface-container text-on-surface-variant font-label-sm text-[12px]">Vercel</span>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section id="skills" class="section">
-      <div class="section-heading reveal"><p class="eyebrow">02 / TOOLKIT</p><h2>Technologies I work with.</h2></div>
-      <div class="skills-grid reveal">
-        <div class="skill-card"><span>01</span><h3>Languages</h3><p>Java · Python · C++ · JavaScript · SQL</p></div>
-        <div class="skill-card"><span>02</span><h3>Web & Backend</h3><p>HTML · CSS · React · Node.js · Express · REST APIs</p></div>
-        <div class="skill-card"><span>03</span><h3>Databases & Cloud</h3><p>MySQL · MongoDB · Firebase · Railway · Render · Vercel</p></div>
-        <div class="skill-card"><span>04</span><h3>Development Tools</h3><p>Git · GitHub · Tailwind CSS · Bootstrap · Android</p></div>
-      </div>
-    </section>
+      <!-- ================= SECTION: TECHNICAL ARSENAL ================= -->
+      <section class="max-w-[1240px] mx-auto px-margin-mobile lg:px-margin py-20 lg:py-24" id="skills">
+        <div class="flex flex-col gap-12">
+          <div class="flex flex-col gap-2 reveal-elem">
+            <span class="font-label-sm text-label-sm uppercase tracking-widest text-primary font-semibold">Technical Arsenal</span>
+            <h2 class="font-headline-lg text-3xl sm:text-4xl text-on-surface font-bold">
+              Tools and frameworks mastered through real builds.
+            </h2>
+          </div>
 
-    <section id="projects" class="section">
-      <div class="section-heading reveal"><p class="eyebrow">03 / SELECTED WORK</p><h2>Things I've built.</h2></div>
-      <div class="projects-grid">
-        <article class="project-card featured reveal"><div class="project-number">01</div><div><p class="project-type">FULL-STACK WEB PLATFORM</p><h3>InternHunt</h3><p>A platform for discovering internships and jobs, built with a frontend interface and Node.js backend with MySQL.</p><div class="tags"><span>HTML/CSS/JS</span><span>Node.js</span><span>MySQL</span></div><a href="https://internhunt.in" target="_blank" rel="noopener" class="project-link">Live website ↗</a> <a href="https://github.com/iitianmanoj/internhunt-frontend" target="_blank" rel="noopener" class="project-link">GitHub ↗</a></div></article>
-        <article class="project-card reveal"><div class="project-number">02</div><div><p class="project-type">AI / WEB APPLICATION</p><h3>MockHR</h3><p>An AI-assisted mock interview application that generates interview questions from a resume and selected job role.</p><div class="tags"><span>Python</span><span>Flask</span><span>OpenRouter</span></div><a href="https://github.com/iitianmanoj" target="_blank" rel="noopener" class="project-link">View profile ↗</a></div></article>
-        <article class="project-card reveal"><div class="project-number">03</div><div><p class="project-type">ANDROID / SAFETY</p><h3>MediAlert</h3><p>An Android safety and medicine assistant concept with authentication, medicine management, OCR-based pill recognition, and appointments.</p><div class="tags"><span>Java</span><span>Firebase</span><span>ML Kit</span></div><a href="https://github.com/iitianmanoj" target="_blank" rel="noopener" class="project-link">View profile ↗</a></div></article>
-        <article class="project-card reveal"><div class="project-number">04</div><div><p class="project-type">AI / MEDIA TOOL</p><h3>Automated Video Dubbing</h3><p>An AI-focused project exploring the workflow of converting spoken video content into another language.</p><div class="tags"><span>Python</span><span>AI</span><span>FFmpeg</span></div><a href="https://github.com/iitianmanoj" target="_blank" rel="noopener" class="project-link">View profile ↗</a></div></article>
-      </div>
-    </section>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Category 1: Languages -->
+            <div class="p-6 rounded-2xl bg-surface-container-lowest border border-outline-variant/40 shadow-sm motion-card flex flex-col gap-4 reveal-elem">
+              <div class="flex items-center gap-3 text-on-surface">
+                <div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+                  <span class="material-symbols-outlined text-[20px]">code</span>
+                </div>
+                <h3 class="font-headline-sm text-[17px] font-semibold">Languages</h3>
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <span class="tech-pill px-3 py-1.5 rounded-full bg-surface-container-low border border-outline-variant/30 text-on-surface font-label-sm text-label-sm font-medium">Java (Core/Threads)</span>
+                <span class="tech-pill px-3 py-1.5 rounded-full bg-surface-container-low border border-outline-variant/30 text-on-surface font-label-sm text-label-sm font-medium">JavaScript (ES6+)</span>
+                <span class="tech-pill px-3 py-1.5 rounded-full bg-surface-container-low border border-outline-variant/30 text-on-surface font-label-sm text-label-sm font-medium">Python</span>
+                <span class="tech-pill px-3 py-1.5 rounded-full bg-surface-container-low border border-outline-variant/30 text-on-surface font-label-sm text-label-sm font-medium">SQL</span>
+                <span class="tech-pill px-3 py-1.5 rounded-full bg-surface-container-low border border-outline-variant/30 text-on-surface font-label-sm text-label-sm font-medium">HTML5 &amp; CSS3</span>
+              </div>
+            </div>
 
-    <section class="section quote-section reveal"><p>“The best way to learn software development is to build something that people can use.”</p></section>
+            <!-- Category 2: Frontend -->
+            <div class="p-6 rounded-2xl bg-surface-container-lowest border border-outline-variant/40 shadow-sm motion-card flex flex-col gap-4 reveal-elem">
+              <div class="flex items-center gap-3 text-on-surface">
+                <div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+                  <span class="material-symbols-outlined text-[20px]">devices</span>
+                </div>
+                <h3 class="font-headline-sm text-[17px] font-semibold">Frontend</h3>
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <span class="tech-pill px-3 py-1.5 rounded-full bg-surface-container-low border border-outline-variant/30 text-on-surface font-label-sm text-label-sm font-medium">React.js</span>
+                <span class="tech-pill px-3 py-1.5 rounded-full bg-surface-container-low border border-outline-variant/30 text-on-surface font-label-sm text-label-sm font-medium">Vite</span>
+                <span class="tech-pill px-3 py-1.5 rounded-full bg-surface-container-low border border-outline-variant/30 text-on-surface font-label-sm text-label-sm font-medium">Tailwind CSS</span>
+                <span class="tech-pill px-3 py-1.5 rounded-full bg-surface-container-low border border-outline-variant/30 text-on-surface font-label-sm text-label-sm font-medium">State Management</span>
+                <span class="tech-pill px-3 py-1.5 rounded-full bg-surface-container-low border border-outline-variant/30 text-on-surface font-label-sm text-label-sm font-medium">Responsive UI</span>
+              </div>
+            </div>
 
-    <section id="contact" class="section contact-section">
-      <div class="section-heading reveal"><p class="eyebrow">04 / CONTACT</p><h2>Let's build something<br><span>meaningful.</span></h2></div>
-      <div class="contact-copy reveal"><p>I'm open to internships, project collaborations, and conversations about software development.</p><a class="btn primary" href="mailto:iitianmanoj@gmail.com">Send me an email ↗</a><div class="contact-details"><p>Greater Noida, India</p><p><a href="mailto:iitianmanoj@gmail.com">iitianmanoj@gmail.com</a></p></div></div>
-    </section>
+            <!-- Category 3: Backend & DB -->
+            <div class="p-6 rounded-2xl bg-surface-container-lowest border border-outline-variant/40 shadow-sm motion-card flex flex-col gap-4 reveal-elem">
+              <div class="flex items-center gap-3 text-on-surface">
+                <div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+                  <span class="material-symbols-outlined text-[20px]">dns</span>
+                </div>
+                <h3 class="font-headline-sm text-[17px] font-semibold">Backend &amp; DB</h3>
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <span class="tech-pill px-3 py-1.5 rounded-full bg-surface-container-low border border-outline-variant/30 text-on-surface font-label-sm text-label-sm font-medium">Node.js</span>
+                <span class="tech-pill px-3 py-1.5 rounded-full bg-surface-container-low border border-outline-variant/30 text-on-surface font-label-sm text-label-sm font-medium">Express.js</span>
+                <span class="tech-pill px-3 py-1.5 rounded-full bg-surface-container-low border border-outline-variant/30 text-on-surface font-label-sm text-label-sm font-medium">MySQL</span>
+                <span class="tech-pill px-3 py-1.5 rounded-full bg-surface-container-low border border-outline-variant/30 text-on-surface font-label-sm text-label-sm font-medium">PostgreSQL</span>
+                <span class="tech-pill px-3 py-1.5 rounded-full bg-surface-container-low border border-outline-variant/30 text-on-surface font-label-sm text-label-sm font-medium">FastAPI / Flask</span>
+                <span class="tech-pill px-3 py-1.5 rounded-full bg-surface-container-low border border-outline-variant/30 text-on-surface font-label-sm text-label-sm font-medium">Firebase</span>
+              </div>
+            </div>
+
+            <!-- Category 4: Cloud & Tools -->
+            <div class="p-6 rounded-2xl bg-surface-container-lowest border border-outline-variant/40 shadow-sm motion-card flex flex-col gap-4 reveal-elem">
+              <div class="flex items-center gap-3 text-on-surface">
+                <div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+                  <span class="material-symbols-outlined text-[20px]">integration_instructions</span>
+                </div>
+                <h3 class="font-headline-sm text-[17px] font-semibold">Cloud &amp; DevOps</h3>
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <span class="tech-pill px-3 py-1.5 rounded-full bg-surface-container-low border border-outline-variant/30 text-on-surface font-label-sm text-label-sm font-medium">Git &amp; GitHub</span>
+                <span class="tech-pill px-3 py-1.5 rounded-full bg-surface-container-low border border-outline-variant/30 text-on-surface font-label-sm text-label-sm font-medium">Docker</span>
+                <span class="tech-pill px-3 py-1.5 rounded-full bg-surface-container-low border border-outline-variant/30 text-on-surface font-label-sm text-label-sm font-medium">Vercel &amp; Render</span>
+                <span class="tech-pill px-3 py-1.5 rounded-full bg-surface-container-low border border-outline-variant/30 text-on-surface font-label-sm text-label-sm font-medium">Postman</span>
+                <span class="tech-pill px-3 py-1.5 rounded-full bg-surface-container-low border border-outline-variant/30 text-on-surface font-label-sm text-label-sm font-medium">Linux CLI</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SECTION: FEATURED PROJECTS ================= -->
+      <section class="w-full bg-surface-container-low/70 py-20 lg:py-24 border-y border-outline-variant/30" id="projects">
+        <div class="max-w-[1240px] mx-auto px-margin-mobile lg:px-margin flex flex-col gap-12">
+          <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 reveal-elem">
+            <div class="flex flex-col gap-2">
+              <span class="font-label-sm text-label-sm uppercase tracking-widest text-primary font-semibold">Featured Work</span>
+              <h2 class="font-headline-lg text-3xl sm:text-4xl text-on-surface font-bold">
+                Production builds &amp; technical depth.
+              </h2>
+            </div>
+            <div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-container-lowest border border-outline-variant/40 shadow-sm">
+              <span class="font-label-sm text-label-sm text-on-surface-variant">4 Selected Systems</span>
+              <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+              <span class="font-label-sm text-label-sm text-primary font-semibold">Verified Codebases</span>
+            </div>
+          </div>
+
+          <!-- 2x2 Interactive Motion Project Grid -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Project 1: InternHunt -->
+            <div class="p-8 rounded-3xl bg-surface-container-lowest border border-outline-variant/50 shadow-sm motion-card flex flex-col justify-between gap-6 group reveal-elem">
+              <!-- Visual Card Preview Header -->
+              <div class="flex flex-col gap-4">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-primary"></span>
+                    <span class="font-label-sm text-label-sm text-primary font-bold uppercase tracking-wider">Web Platform • Full-Stack</span>
+                  </div>
+                  <span class="px-3 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-[11px] font-medium">Production Architecture</span>
+                </div>
+                <div class="flex items-start justify-between gap-2">
+                  <h3 class="font-headline-md text-2xl text-on-surface font-bold group-hover:text-primary transition-colors">
+                    InternHunt — Internship &amp; Talent Platform
+                  </h3>
+                </div>
+                <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                  Enterprise-grade recruitment marketplace facilitating applicant tracking and hiring workflows. Engineered with role-based access control (RBAC), normalized relational schemas in MySQL, and secured session tokens.
+                </p>
+                <!-- Project Preview Mock Graphic -->
+                <div class="w-full h-24 rounded-xl bg-gradient-to-r from-surface-container-low via-surface-container to-surface-container-low p-3.5 border border-outline-variant/30 flex items-center justify-between overflow-hidden relative">
+                  <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-lg bg-primary-container text-on-primary flex items-center justify-center font-bold">IH</div>
+                    <div class="flex flex-col">
+                      <span class="font-label-sm text-[12px] font-bold text-on-surface">Candidate Portal &amp; RBAC Pipeline</span>
+                      <span class="font-label-sm text-[11px] text-emerald-600">Active Query Indexing &amp; Auth</span>
+                    </div>
+                  </div>
+                  <span class="material-symbols-outlined text-outline-variant text-[28px] group-hover:text-primary group-hover:scale-110 transition-all">hub</span>
+                </div>
+                <div class="flex flex-wrap gap-2 pt-1">
+                  <span class="tech-pill px-3 py-1 rounded-lg bg-surface-container text-on-surface font-label-sm text-[12px]">React</span>
+                  <span class="tech-pill px-3 py-1 rounded-lg bg-surface-container text-on-surface font-label-sm text-[12px]">Node.js</span>
+                  <span class="tech-pill px-3 py-1 rounded-lg bg-surface-container text-on-surface font-label-sm text-[12px]">Express</span>
+                  <span class="tech-pill px-3 py-1 rounded-lg bg-surface-container text-on-surface font-label-sm text-[12px]">MySQL</span>
+                  <span class="tech-pill px-3 py-1 rounded-lg bg-surface-container text-on-surface font-label-sm text-[12px]">JWT Auth</span>
+                </div>
+              </div>
+              <div class="flex items-center justify-between pt-4 border-t border-outline-variant/30">
+                <a class="inline-flex items-center gap-2 font-label-md text-label-md text-primary font-bold group-hover:gap-3 transition-all" href="https://github.com/iitianmanoj" rel="noopener noreferrer" target="_blank">
+                  <span>View Source Code</span>
+                  <span class="material-symbols-outlined text-[17px] transition-transform group-hover:translate-x-1">arrow_forward</span>
+                </a>
+                <div class="flex items-center gap-1.5 text-on-surface-variant font-label-sm text-[12px]">
+                  <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                  <span>Active Core</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Project 2: theTapri -->
+            <div class="p-8 rounded-3xl bg-surface-container-lowest border border-outline-variant/50 shadow-sm motion-card flex flex-col justify-between gap-6 group reveal-elem">
+              <div class="flex flex-col gap-4">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-primary"></span>
+                    <span class="font-label-sm text-label-sm text-primary font-bold uppercase tracking-wider">E-Commerce • Payments</span>
+                  </div>
+                  <span class="px-3 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-[11px] font-medium">Zero CLS</span>
+                </div>
+                <div class="flex items-start justify-between gap-2">
+                  <h3 class="font-headline-md text-2xl text-on-surface font-bold group-hover:text-primary transition-colors">
+                    theTapri — Modern Fashion Storefront
+                  </h3>
+                </div>
+                <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                  High-performance streetwear e-commerce application. Features instantaneous client-side cart transitions, server-side signature verification with Razorpay payment webhooks, and responsive asset loading.
+                </p>
+                <!-- Project Preview Mock Graphic -->
+                <div class="w-full h-24 rounded-xl bg-gradient-to-r from-surface-container-low via-surface-container to-surface-container-low p-3.5 border border-outline-variant/30 flex items-center justify-between overflow-hidden relative">
+                  <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-lg bg-surface-container-highest text-primary flex items-center justify-center font-bold">
+                      <span class="material-symbols-outlined text-[20px]">shopping_bag</span>
+                    </div>
+                    <div class="flex flex-col">
+                      <span class="font-label-sm text-[12px] font-bold text-on-surface">Razorpay Gateway Integration</span>
+                      <span class="font-label-sm text-[11px] text-emerald-600">Webhook Verified Checkouts</span>
+                    </div>
+                  </div>
+                  <span class="material-symbols-outlined text-outline-variant text-[28px] group-hover:text-primary group-hover:scale-110 transition-all">credit_card</span>
+                </div>
+                <div class="flex flex-wrap gap-2 pt-1">
+                  <span class="tech-pill px-3 py-1 rounded-lg bg-surface-container text-on-surface font-label-sm text-[12px]">React</span>
+                  <span class="tech-pill px-3 py-1 rounded-lg bg-surface-container text-on-surface font-label-sm text-[12px]">Vite</span>
+                  <span class="tech-pill px-3 py-1 rounded-lg bg-surface-container text-on-surface font-label-sm text-[12px]">Node.js</span>
+                  <span class="tech-pill px-3 py-1 rounded-lg bg-surface-container text-on-surface font-label-sm text-[12px]">Razorpay SDK</span>
+                  <span class="tech-pill px-3 py-1 rounded-lg bg-surface-container text-on-surface font-label-sm text-[12px]">Tailwind</span>
+                </div>
+              </div>
+              <div class="flex items-center justify-between pt-4 border-t border-outline-variant/30">
+                <a class="inline-flex items-center gap-2 font-label-md text-label-md text-primary font-bold group-hover:gap-3 transition-all" href="https://github.com/iitianmanoj" rel="noopener noreferrer" target="_blank">
+                  <span>View Source Code</span>
+                  <span class="material-symbols-outlined text-[17px] transition-transform group-hover:translate-x-1">arrow_forward</span>
+                </a>
+                <div class="flex items-center gap-1.5 text-on-surface-variant font-label-sm text-[12px]">
+                  <span class="material-symbols-outlined text-[16px] text-emerald-600">verified</span>
+                  <span>Payment Tested</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Project 3: MockHR -->
+            <div class="p-8 rounded-3xl bg-surface-container-lowest border border-outline-variant/50 shadow-sm motion-card flex flex-col justify-between gap-6 group reveal-elem">
+              <div class="flex flex-col gap-4">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-primary"></span>
+                    <span class="font-label-sm text-label-sm text-primary font-bold uppercase tracking-wider">AI • Natural Language</span>
+                  </div>
+                  <span class="px-3 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-[11px] font-medium">LLM Orchestration</span>
+                </div>
+                <div class="flex items-start justify-between gap-2">
+                  <h3 class="font-headline-md text-2xl text-on-surface font-bold group-hover:text-primary transition-colors">
+                    MockHR — Automated Interview Simulator
+                  </h3>
+                </div>
+                <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                  Adaptive interview trainer that parses candidate resume PDFs using PyPDF2, aligns past work with target job descriptions, and streams targeted technical and behavioral inquiries via DeepSeek via OpenRouter.
+                </p>
+                <!-- Project Preview Mock Graphic -->
+                <div class="w-full h-24 rounded-xl bg-gradient-to-r from-surface-container-low via-surface-container to-surface-container-low p-3.5 border border-outline-variant/30 flex items-center justify-between overflow-hidden relative">
+                  <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-lg bg-surface-container-highest text-primary flex items-center justify-center font-bold">
+                      <span class="material-symbols-outlined text-[20px]">smart_toy</span>
+                    </div>
+                    <div class="flex flex-col">
+                      <span class="font-label-sm text-[12px] font-bold text-on-surface">DeepSeek LLM Prompt Engine</span>
+                      <span class="font-label-sm text-[11px] text-indigo-600">Contextual Stream Pipeline</span>
+                    </div>
+                  </div>
+                  <span class="material-symbols-outlined text-outline-variant text-[28px] group-hover:text-primary group-hover:scale-110 transition-all">psychology</span>
+                </div>
+                <div class="flex flex-wrap gap-2 pt-1">
+                  <span class="tech-pill px-3 py-1 rounded-lg bg-surface-container text-on-surface font-label-sm text-[12px]">Python</span>
+                  <span class="tech-pill px-3 py-1 rounded-lg bg-surface-container text-on-surface font-label-sm text-[12px]">Flask</span>
+                  <span class="tech-pill px-3 py-1 rounded-lg bg-surface-container text-on-surface font-label-sm text-[12px]">DeepSeek LLM</span>
+                  <span class="tech-pill px-3 py-1 rounded-lg bg-surface-container text-on-surface font-label-sm text-[12px]">PyPDF2</span>
+                  <span class="tech-pill px-3 py-1 rounded-lg bg-surface-container text-on-surface font-label-sm text-[12px]">OpenRouter API</span>
+                </div>
+              </div>
+              <div class="flex items-center justify-between pt-4 border-t border-outline-variant/30">
+                <a class="inline-flex items-center gap-2 font-label-md text-label-md text-primary font-bold group-hover:gap-3 transition-all" href="https://github.com/iitianmanoj" rel="noopener noreferrer" target="_blank">
+                  <span>View Source Code</span>
+                  <span class="material-symbols-outlined text-[17px] transition-transform group-hover:translate-x-1">arrow_forward</span>
+                </a>
+                <div class="flex items-center gap-1.5 text-on-surface-variant font-label-sm text-[12px]">
+                  <span class="material-symbols-outlined text-[16px] text-primary">psychology</span>
+                  <span>Context Aware</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Project 4: Medialert -->
+            <div class="p-8 rounded-3xl bg-surface-container-lowest border border-outline-variant/50 shadow-sm motion-card flex flex-col justify-between gap-6 group reveal-elem">
+              <div class="flex flex-col gap-4">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-primary"></span>
+                    <span class="font-label-sm text-label-sm text-primary font-bold uppercase tracking-wider">Android • Vision ML</span>
+                  </div>
+                  <span class="px-3 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-[11px] font-medium">Offline Inference</span>
+                </div>
+                <div class="flex items-start justify-between gap-2">
+                  <h3 class="font-headline-md text-2xl text-on-surface font-bold group-hover:text-primary transition-colors">
+                    Medialert — Medicine Safety &amp; OCR Assistant
+                  </h3>
+                </div>
+                <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                  Accessibility-focused native Android app assisting visually impaired individuals. Captures live camera frames via CameraX, runs on-device Google ML Kit OCR to parse prescription labels, and reads dosage instructions aloud.
+                </p>
+                <!-- Project Preview Mock Graphic -->
+                <div class="w-full h-24 rounded-xl bg-gradient-to-r from-surface-container-low via-surface-container to-surface-container-low p-3.5 border border-outline-variant/30 flex items-center justify-between overflow-hidden relative">
+                  <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-lg bg-surface-container-highest text-primary flex items-center justify-center font-bold">
+                      <span class="material-symbols-outlined text-[20px]">document_scanner</span>
+                    </div>
+                    <div class="flex flex-col">
+                      <span class="font-label-sm text-[12px] font-bold text-on-surface">CameraX &amp; ML Kit OCR Stream</span>
+                      <span class="font-label-sm text-[11px] text-emerald-600">Zero Internet Required</span>
+                    </div>
+                  </div>
+                  <span class="material-symbols-outlined text-outline-variant text-[28px] group-hover:text-primary group-hover:scale-110 transition-all">visibility</span>
+                </div>
+                <div class="flex flex-wrap gap-2 pt-1">
+                  <span class="tech-pill px-3 py-1 rounded-lg bg-surface-container text-on-surface font-label-sm text-[12px]">Java</span>
+                  <span class="tech-pill px-3 py-1 rounded-lg bg-surface-container text-on-surface font-label-sm text-[12px]">Android SDK</span>
+                  <span class="tech-pill px-3 py-1 rounded-lg bg-surface-container text-on-surface font-label-sm text-[12px]">CameraX</span>
+                  <span class="tech-pill px-3 py-1 rounded-lg bg-surface-container text-on-surface font-label-sm text-[12px]">ML Kit OCR</span>
+                  <span class="tech-pill px-3 py-1 rounded-lg bg-surface-container text-on-surface font-label-sm text-[12px]">TTS Engine</span>
+                </div>
+              </div>
+              <div class="flex items-center justify-between pt-4 border-t border-outline-variant/30">
+                <a class="inline-flex items-center gap-2 font-label-md text-label-md text-primary font-bold group-hover:gap-3 transition-all" href="https://github.com/iitianmanoj" rel="noopener noreferrer" target="_blank">
+                  <span>View Source Code</span>
+                  <span class="material-symbols-outlined text-[17px] transition-transform group-hover:translate-x-1">arrow_forward</span>
+                </a>
+                <div class="flex items-center gap-1.5 text-on-surface-variant font-label-sm text-[12px]">
+                  <span class="material-symbols-outlined text-[16px] text-primary">visibility</span>
+                  <span>Real-Time OCR</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SECTION: DSA & LEETCODE ================= -->
+      <section class="max-w-[1240px] mx-auto px-margin-mobile lg:px-margin py-20 lg:py-24" id="problem-solving">
+        <div class="p-8 sm:p-12 lg:p-14 rounded-3xl bg-surface-container-lowest border border-outline-variant/40 shadow-sm flex flex-col gap-10 motion-card reveal-elem">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-2">
+            <div class="flex flex-col gap-2">
+              <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-primary animate-ping"></span>
+                <span class="font-label-sm text-label-sm uppercase tracking-widest text-primary font-semibold">Algorithmic Competency</span>
+              </div>
+              <h2 class="font-headline-lg text-3xl sm:text-4xl text-on-surface font-bold">
+                Data Structures &amp; Problem Solving
+              </h2>
+              <p class="font-body-md text-body-md text-on-surface-variant">Continuous practice sharpening computational complexity and analytical rigor.</p>
+            </div>
+            <a class="btn-shimmer inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-surface-container text-on-surface font-headline-sm text-[14px] font-semibold hover:bg-primary hover:text-on-primary border border-outline-variant/40 shadow-sm transition-all duration-300 hover:-translate-y-0.5" href="https://leetcode.com/u/iitianmanoj" rel="noopener noreferrer" target="_blank">
+              <span class="material-symbols-outlined text-[18px]">terminal</span>
+              <span>View LeetCode Profile (@iitianmanoj)</span>
+              <span class="material-symbols-outlined text-[16px]">open_in_new</span>
+            </a>
+          </div>
+
+          <!-- Metrics Visual Animated Gauge Grid -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- DSA Metric 1 -->
+            <div class="p-6 rounded-2xl bg-surface-container-low/80 border border-outline-variant/30 flex flex-col gap-2.5">
+              <span class="font-label-sm text-[12px] text-on-surface-variant uppercase tracking-wider font-semibold">Total Solved</span>
+              <div class="flex items-baseline gap-2">
+                <span class="font-display-xl text-3xl sm:text-4xl font-extrabold text-on-surface">172</span>
+                <span class="font-label-sm text-label-sm text-primary font-bold">Problems</span>
+              </div>
+              <!-- Animated Progress Bar -->
+              <div class="w-full bg-surface-container rounded-full h-2 mt-2 overflow-hidden">
+                <div class="gauge-fill h-full rounded-full bg-gradient-to-r from-primary to-primary-container transition-all duration-1000 ease-out" data-progress="82%" style="width: 0%"></div>
+              </div>
+              <span class="text-[11px] text-on-surface-variant pt-1 font-label-sm">Consistency rating high</span>
+            </div>
+
+            <!-- DSA Metric 2 -->
+            <div class="p-6 rounded-2xl bg-surface-container-low/80 border border-outline-variant/30 flex flex-col gap-2.5">
+              <span class="font-label-sm text-[12px] text-on-surface-variant uppercase tracking-wider font-semibold">Difficulty Breakdown</span>
+              <div class="flex items-center gap-3 font-label-md text-label-md pt-1">
+                <div class="flex flex-col">
+                  <span class="font-bold text-emerald-600 text-lg">157</span>
+                  <span class="text-[11px] text-on-surface-variant font-medium">Easy</span>
+                </div>
+                <span class="text-outline-variant font-light">/</span>
+                <div class="flex flex-col">
+                  <span class="font-bold text-amber-600 text-lg">14</span>
+                  <span class="text-[11px] text-on-surface-variant font-medium">Med</span>
+                </div>
+                <span class="text-outline-variant font-light">/</span>
+                <div class="flex flex-col">
+                  <span class="font-bold text-rose-600 text-lg">1</span>
+                  <span class="text-[11px] text-on-surface-variant font-medium">Hard</span>
+                </div>
+              </div>
+              <span class="font-label-sm text-[11px] text-on-surface-variant pt-2">Structured algorithmic mastery</span>
+            </div>
+
+            <!-- DSA Metric 3 -->
+            <div class="p-6 rounded-2xl bg-surface-container-low/80 border border-outline-variant/30 flex flex-col gap-2.5">
+              <span class="font-label-sm text-[12px] text-on-surface-variant uppercase tracking-wider font-semibold">Acceptance Rate</span>
+              <div class="flex items-baseline gap-2">
+                <span class="font-display-xl text-3xl sm:text-4xl font-extrabold text-on-surface">68.5%</span>
+              </div>
+              <div class="flex items-center gap-1.5 text-emerald-700 font-label-sm text-[12px] pt-2 font-medium">
+                <span class="material-symbols-outlined text-[16px]">check_circle</span>
+                <span>High first-pass accuracy</span>
+              </div>
+            </div>
+
+            <!-- DSA Metric 4 -->
+            <div class="p-6 rounded-2xl bg-surface-container-low/80 border border-outline-variant/30 flex flex-col gap-2.5">
+              <span class="font-label-sm text-[12px] text-on-surface-variant uppercase tracking-wider font-semibold">Runtime / Beats</span>
+              <div class="flex items-baseline gap-2">
+                <span class="font-display-xl text-3xl sm:text-4xl font-extrabold text-primary">90.7%</span>
+              </div>
+              <div class="flex items-center gap-1.5 text-on-surface-variant font-label-sm text-[12px] pt-2 font-medium">
+                <span class="material-symbols-outlined text-[16px] text-primary">speed</span>
+                <span>Optimal time complexity</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Core Algorithmic Tooling Interactive Badges -->
+          <div class="flex flex-col gap-3 pt-2">
+            <span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Core Algorithmic Tooling</span>
+            <div class="flex flex-wrap gap-2.5">
+              <div class="tech-pill inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-surface-container border border-outline-variant/30 text-on-surface font-body-sm text-body-sm font-medium">
+                <span class="w-2 h-2 rounded-full bg-primary"></span>
+                <span>Arrays &amp; Vectors</span>
+              </div>
+              <div class="tech-pill inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-surface-container border border-outline-variant/30 text-on-surface font-body-sm text-body-sm font-medium">
+                <span class="w-2 h-2 rounded-full bg-primary"></span>
+                <span>Two-Pointer Methods</span>
+              </div>
+              <div class="tech-pill inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-surface-container border border-outline-variant/30 text-on-surface font-body-sm text-body-sm font-medium">
+                <span class="w-2 h-2 rounded-full bg-primary"></span>
+                <span>Sliding Window Optimization</span>
+              </div>
+              <div class="tech-pill inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-surface-container border border-outline-variant/30 text-on-surface font-body-sm text-body-sm font-medium">
+                <span class="w-2 h-2 rounded-full bg-primary"></span>
+                <span>Hash Maps &amp; Frequency Tables</span>
+              </div>
+              <div class="tech-pill inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-surface-container border border-outline-variant/30 text-on-surface font-body-sm text-body-sm font-medium">
+                <span class="w-2 h-2 rounded-full bg-primary"></span>
+                <span>Singly/Doubly Linked Lists</span>
+              </div>
+              <div class="tech-pill inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-surface-container border border-outline-variant/30 text-on-surface font-body-sm text-body-sm font-medium">
+                <span class="w-2 h-2 rounded-full bg-primary"></span>
+                <span>Bit Manipulation &amp; Masks</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SECTION: EDUCATION & RECOGNITIONS ================= -->
+      <section class="w-full bg-surface-container-low/70 py-20 lg:py-24 border-y border-outline-variant/30" id="education">
+        <div class="max-w-[1240px] mx-auto px-margin-mobile lg:px-margin flex flex-col gap-12">
+          <div class="flex flex-col gap-2 reveal-elem">
+            <span class="font-label-sm text-label-sm uppercase tracking-widest text-primary font-semibold">Academic Foundation &amp; Honors</span>
+            <h2 class="font-headline-lg text-3xl sm:text-4xl text-on-surface font-bold">
+              Education &amp; Merit Recognitions
+            </h2>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Education Card -->
+            <div class="p-8 rounded-3xl bg-surface-container-lowest border border-outline-variant/40 shadow-sm motion-card flex flex-col justify-between gap-6 md:col-span-2 reveal-elem">
+              <div class="flex flex-col gap-4">
+                <div class="flex flex-wrap items-center justify-between gap-2">
+                  <span class="px-3.5 py-1 rounded-full bg-surface-container text-primary font-label-sm text-label-sm font-bold">Undergraduate Program</span>
+                  <span class="font-label-sm text-label-sm text-on-surface-variant font-medium">2024 – 2028 (Expected)</span>
+                </div>
+                <div>
+                  <h3 class="font-headline-md text-2xl text-on-surface font-bold">B.Tech in Computer Science &amp; Engineering</h3>
+                  <p class="font-body-md text-body-md text-primary font-medium mt-1">Galgotias College of Engineering &amp; Technology</p>
+                </div>
+                <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+                  Rigorous computer science curriculum emphasizing Object-Oriented Analysis, Operating Systems, Database Management Systems, Discrete Mathematics, and Computer Architecture.
+                </p>
+              </div>
+              <div class="flex items-center gap-4 pt-4 border-t border-outline-variant/30">
+                <div class="px-4 py-2.5 rounded-xl bg-surface-container flex items-baseline gap-1.5 border border-outline-variant/20">
+                  <span class="font-headline-sm text-2xl text-on-surface font-extrabold">8.16</span>
+                  <span class="font-label-sm text-label-sm text-primary font-bold">SGPA</span>
+                </div>
+                <span class="font-body-sm text-body-sm text-on-surface-variant font-medium">Consistent first-division performance</span>
+              </div>
+            </div>
+
+            <!-- Merit Scholarship -->
+            <div class="p-8 rounded-3xl bg-surface-container-lowest border border-outline-variant/40 shadow-sm motion-card flex flex-col justify-between gap-6 reveal-elem">
+              <div class="flex flex-col gap-4">
+                <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-primary to-primary-container text-on-primary flex items-center justify-center shadow-md">
+                  <span class="material-symbols-outlined text-[24px]">award_star</span>
+                </div>
+                <div>
+                  <span class="font-label-sm text-label-sm text-primary font-bold uppercase">Merit Award</span>
+                  <h3 class="font-headline-sm text-xl text-on-surface font-bold mt-1">Appinventiv EduBoost Scholar</h3>
+                </div>
+                <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+                  Awarded an exclusive ₹50,000 engineering scholarship in recognition of exceptional software potential, technical diligence, and academic achievement.
+                </p>
+              </div>
+              <div class="flex items-center gap-2 text-emerald-700 font-label-md text-label-md font-bold pt-2">
+                <span class="material-symbols-outlined text-[20px]">verified</span>
+                <span>₹50,000 Recipient</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Additional Hackathons & Initiatives Card -->
+          <div class="p-6 sm:p-7 rounded-2xl bg-surface-container-lowest border border-outline-variant/40 shadow-sm motion-card flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 reveal-elem">
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-2xl bg-surface-container flex items-center justify-center text-primary shrink-0">
+                <span class="material-symbols-outlined text-[24px]">rocket_launch</span>
+              </div>
+              <div class="flex flex-col">
+                <span class="font-headline-sm text-[17px] text-on-surface font-bold">Smart India Hackathon &amp; Fund My Crazy 2026</span>
+                <span class="font-body-sm text-body-sm text-on-surface-variant">Active participant and innovation candidate tackling high-impact societal computing challenges.</span>
+              </div>
+            </div>
+            <span class="px-3.5 py-1.5 rounded-full bg-surface-container border border-outline-variant/30 text-primary font-label-sm text-[12px] font-semibold whitespace-nowrap">Innovation Track</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SECTION: CONTACT & CTA ================= -->
+      <section class="max-w-[1240px] mx-auto px-margin-mobile lg:px-margin py-20 lg:py-28" id="contact">
+        <div class="p-8 sm:p-14 lg:p-16 rounded-3xl bg-surface-container-lowest border border-outline-variant/40 shadow-xl flex flex-col items-center text-center gap-8 relative overflow-hidden motion-card reveal-elem">
+          <!-- Luminous glow inside card -->
+          <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-96 bg-primary-fixed-dim/40 rounded-full blur-3xl pointer-events-none -z-10"></div>
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-surface-container border border-indigo-100 text-primary font-label-sm text-[12px] font-bold">
+            <span class="w-2 h-2 rounded-full bg-primary animate-ping"></span>
+            <span>Initiate Communication</span>
+          </div>
+          <div class="max-w-2xl flex flex-col gap-4">
+            <h2 class="font-display-xl text-3xl sm:text-4xl lg:text-5xl text-on-surface font-extrabold tracking-tight">
+              Let's build something 
+              <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary-container to-tertiary">exceptional</span> together.
+            </h2>
+            <p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+              Whether you're looking for a disciplined SDE intern, discussing high-performance backend pipelines, or exploring collaborative ideas — my inbox is always open.
+            </p>
+          </div>
+
+          <!-- Direct Links & Social Buttons -->
+          <div class="flex flex-wrap items-center justify-center gap-4 pt-2">
+            <a class="btn-shimmer inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-gradient-to-r from-primary to-primary-container text-on-primary font-headline-sm text-[15px] font-semibold shadow-md hover:shadow-[0_8px_25px_rgba(67,56,202,0.3)] transition-all duration-300 hover:-translate-y-0.5" href="mailto:iitianmanoj@gmail.com">
+              <span class="material-symbols-outlined text-[19px]">mail</span>
+              <span>iitianmanoj@gmail.com</span>
+            </a>
+            <a class="btn-shimmer inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-surface-container text-on-surface font-headline-sm text-[15px] font-semibold border border-outline-variant/40 hover:bg-surface-container-high transition-all duration-300 hover:-translate-y-0.5" href="https://linkedin.com/in/iitianmanoj" rel="noopener noreferrer" target="_blank">
+              <span class="material-symbols-outlined text-[19px] text-primary">link</span>
+              <span>LinkedIn Profile</span>
+            </a>
+            <a class="btn-shimmer inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-surface-container text-on-surface font-headline-sm text-[15px] font-semibold border border-outline-variant/40 hover:bg-surface-container-high transition-all duration-300 hover:-translate-y-0.5" href="https://github.com/iitianmanoj" rel="noopener noreferrer" target="_blank">
+              <span class="material-symbols-outlined text-[19px] text-primary">code</span>
+              <span>GitHub Profile</span>
+            </a>
+          </div>
+
+          <div class="pt-6 flex flex-wrap items-center justify-center gap-4 sm:gap-6 font-label-sm text-label-sm text-on-surface-variant">
+            <span class="flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+              Response within 24 hours
+            </span>
+            <span>•</span>
+            <span>Delhi NCR, India (IST UTC+5:30)</span>
+          </div>
+        </div>
+      </section>
+    </div>
   </main>
 
-  <footer><p>© <span id="year"></span> Manoj Kumar. Built with HTML, CSS & JavaScript.</p><a href="#home">Back to top ↑</a></footer>
-  <script src="script.js"></script>
+  <!-- ================= FOOTER ================= -->
+  <footer class="w-full bg-surface-container-low border-t border-outline-variant/30 py-space-xl">
+    <div class="max-w-[1240px] mx-auto px-margin-mobile lg:px-margin flex flex-col md:flex-row items-center justify-between gap-space-lg">
+      <div class="flex flex-col items-center md:items-start gap-1">
+        <div class="flex items-center gap-2">
+          <span class="font-headline-sm text-headline-sm font-bold text-on-surface">Manoj Kumar</span>
+          <span class="font-label-sm text-label-sm text-on-surface-variant">• Software Developer</span>
+        </div>
+        <p class="font-body-sm text-body-sm text-on-surface-variant text-center md:text-left">
+          Engineered with precision, rigorous performance standards, and architectural discipline.
+        </p>
+      </div>
+
+      <div class="flex items-center gap-6">
+        <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors font-medium" href="https://github.com/iitianmanoj" rel="noopener noreferrer" target="_blank">GitHub</a>
+        <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors font-medium" href="https://linkedin.com/in/iitianmanoj" rel="noopener noreferrer" target="_blank">LinkedIn</a>
+        <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors font-medium" href="https://leetcode.com/u/iitianmanoj" rel="noopener noreferrer" target="_blank">LeetCode</a>
+        <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors font-medium" href="mailto:iitianmanoj@gmail.com">Email</a>
+      </div>
+
+      <div class="font-label-sm text-label-sm text-on-surface-variant text-center md:text-right">
+        © 2025 Manoj Kumar. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- VANILLA JAVASCRIPT MOTION CONTROLLER -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Intersection Observer for Scroll Reveal & Animated Fill Gauges
+      const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            
+            // Trigger gauge bar animations if present inside
+            const gauges = entry.target.querySelectorAll('.gauge-fill');
+            gauges.forEach(gauge => {
+              const targetWidth = gauge.getAttribute('data-progress') || '80%';
+              gauge.style.width = targetWidth;
+            });
+
+            // Trigger number counters if present
+            const counters = entry.target.querySelectorAll('.counter');
+            counters.forEach(counter => {
+              const target = +counter.getAttribute('data-target');
+              let count = 0;
+              const step = Math.max(1, Math.floor(target / 30));
+              const timer = setInterval(() => {
+                count += step;
+                if (count >= target) {
+                  counter.textContent = target;
+                  clearInterval(timer);
+                } else {
+                  counter.textContent = count;
+                }
+              }, 25);
+            });
+
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.12,
+        rootMargin: '0px 0px -40px 0px'
+      });
+
+      document.querySelectorAll('.reveal-elem').forEach((el, index) => {
+        // Add subtle staggered delay for adjacent elements
+        el.style.transitionDelay = `${(index % 3) * 110}ms`;
+        revealObserver.observe(el);
+      });
+
+      // 2. Navigation Active State on Scroll
+      const sections = document.querySelectorAll('section[id]');
+      const navLinks = document.querySelectorAll('.nav-item');
+
+      window.addEventListener('scroll', () => {
+        let currentSectionId = '';
+        const scrollPosition = window.pageYOffset + 140;
+
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.offsetHeight;
+          if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+            currentSectionId = section.getAttribute('id');
+          }
+        });
+
+        navLinks.forEach(link => {
+          link.classList.remove('bg-surface-container', 'text-primary', 'font-semibold');
+          if (link.getAttribute('href') === `#${currentSectionId}`) {
+            link.classList.add('bg-surface-container', 'text-primary', 'font-semibold');
+          }
+        });
+      }, { passive: true });
+
+      // 3. Subtle Interactive Card Tilt micro-movement (desktop)
+      const motionCards = document.querySelectorAll('.motion-card');
+      motionCards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+          const deltaX = (x - centerX) / centerX;
+          const deltaY = (y - centerY) / centerY;
+          
+          if (window.matchMedia('(hover: hover)').matches) {
+            card.style.transform = `translateY(-5px) rotateX(${(-deltaY * 3).toFixed(2)}deg) rotateY(${(deltaX * 3).toFixed(2)}deg)`;
+          }
+        });
+
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = '';
+        });
+      });
+    });
+  </script>
 </body>
 </html>
